@@ -1,3 +1,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+tbody tr:nth-of-type(even){
+    background-color: #eee;
+}
+
+td{
+    border-bottom: 1px solid #eee;
+}
+
+td:first-child, th:first-child{
+    border-left: 1px solid #ccc;
+}
+
+@layer components {
+
+    .th-header{
+        @apply bg-[#4942E4] text-[20px] text-white border-r-[1px] border-[#ccc] py-[10px];
+    }
+
+    .td-row{
+        @apply py-[10px] px-[15px] text-[16px] border-r-[1px] border-[#ccc];
+    }
+
+}

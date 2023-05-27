@@ -70,6 +70,9 @@
                             </tbody>                                
                         </table>
                     </div>  
+
+                    <x-pagination :resultList="$userList"/>
+
                 </div>
             </div>
         </div>

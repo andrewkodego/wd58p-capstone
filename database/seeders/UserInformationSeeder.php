@@ -12,6 +12,6 @@ class UserInformationSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\UserInformation::factory(20)->create();
+        \App\Models\UserInformation::factory(100)->create();
     }
 }

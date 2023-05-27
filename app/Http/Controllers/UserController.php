@@ -24,7 +24,10 @@ class UserController extends Controller
             $userList->where('name', 'like','%'.$filters['name'].'%');
         }
 
-        $userList = $userList->get();
+        $userList->orderby('deleted_at', 'asc');
+        $userList->orderby('name', 'asc');
+
+        $userList = $userList->paginate(config('constants.RECORD_PER_PAGE'));
 
         return view('console/users/index', compact('userList'));
     }

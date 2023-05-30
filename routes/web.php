@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserInformationController;
+use App\Http\Controllers\OptionController;
+use App\Http\Controllers\OptionGroupController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,6 +37,11 @@ Route::middleware('auth')->group(function () {
         Route::resource('/user_informations', UserInformationController::class);
 
     });
+
+    Route::resource('/options', OptionController::class);
+    Route::resource('/option-groups', OptionGroupController::class);
 });
+
+
 
 require __DIR__.'/auth.php';

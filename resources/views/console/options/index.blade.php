@@ -23,12 +23,12 @@
                             <div class="grid grid-cols-2 gap-4">
                                 <x-text-input name="name" type="text" value="{{ app('request')->input('name') }}" class="mt-1 block w-full" placeholder="Search by name"/>
                                 <div class="mt-1">
-                                    <x-primary-button class="py-[12px]">{{ _('Search')}}</x-primary-button>
+                                    <x-primary-button class="py-[12px]">{{ __('Search')}}</x-primary-button>
                                 </div>
                             </div>
                         </form>
                         <div class="text-right">
-                            <x-primary-button class="py-[12px]" onclick="gotoAdd()"><i class="fa fa-plus"></i>{{ _('Add')}}</x-primary-button>
+                            <x-primary-button class="py-[12px]" onclick="gotoAdd()"><i class="fa fa-plus"></i>{{ __('Add')}}</x-primary-button>
                         </div>
                     </div>
                     <div class="table-wrapper">
@@ -51,7 +51,7 @@
                                     <td class="td-row">{{ $option->optionGroup->name }}</td>
                                     <td class="td-row">
                                         <div class="flex items-center gap-4"> 
-                                            <x-primary-button onclick="gotoEdit({{ $option->id}})">{{ _('Edit')}}</x-primary-button>
+                                            <x-primary-button onclick="gotoEdit({{ $option->id}})">{{ __('Edit')}}</x-primary-button>
                                             <form method="POST" action="{{ route('options.destroy',$option->id) }}">
                                                 @csrf
                                                 @method('delete')

@@ -40,6 +40,8 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('/options', OptionController::class);
     Route::resource('/option-groups', OptionGroupController::class);
+
+    Route::get('/options-with-groups', [OptionController::class, 'getOptionWithGroups'])->name('options.with.groups');
 });
 
 

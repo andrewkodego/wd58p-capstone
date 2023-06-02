@@ -65,4 +65,14 @@ class OptionController extends Controller
     {
         //
     }
+
+    public function getOptionWithGroups(){
+        //SELECT * FROM options
+        //JOIN option_groups ON option_groups.id = group_id
+
+        return Option::paymentMethod()->select('options.id','options.name as opt_name','option_groups.name as group_name')
+            ->join('option_groups','option_groups.id','=','group_id')
+            ->where('options.id','>', 3)
+            ->get();
+    }
 }

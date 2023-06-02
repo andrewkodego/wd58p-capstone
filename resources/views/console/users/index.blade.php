@@ -35,11 +35,11 @@
                         <table class="w-[100%]">
                             <thead>
                                 <tr>
-                                    <th class="th-header">ID</th>
-                                    <th class="th-header">Name</th>
-                                    <th class="th-header">Email</th>
-                                    <th class="th-header">Status</th>
-                                    <th class="th-header">Action</th>
+                                    <th class="th-header" style="width:5%">ID</th>
+                                    <th class="th-header" style="width:35%">Name</th>
+                                    <th class="th-header" style="width:30%">Email</th>
+                                    <th class="th-header" style="width:15%">Status</th>
+                                    <th class="th-header" style="width:15%">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -52,17 +52,10 @@
                                     <td class="td-row">
                                         <div class="flex items-center gap-4"> 
                                             <x-primary-button onclick="gotoEdit({{ $user->id}})">{{ __('Edit')}}</x-primary-button>
-                                            <form method="POST" action="{{ route('users.destroy',$user->id) }}">
-                                                @csrf
-                                                @method('delete')
-                                                <x-danger-button>{{ __('Delete')}}</x-danger-button>
-                                            </form>
-                                            @if($user->isDeleted)
-                                            <form method="POST" action="{{ route('users.restore',$user->id) }}">
-                                                @csrf
-                                                <x-danger-button>{{ __('Restore')}}</x-danger-button>
-                                            </form>
-                                            @endif
+                                            <x-delete-restore :id="$user->id" :isDeleted="$user->isDeleted"
+                                                :action="$user->isDeleted ? route('users.restore',$user->id) : route('users.destroy',$user->id)" 
+                                                deleteLabel="Archive"
+                                                restoreLabel="Activate"/>
                                         </div>
                                     </td>
                                 </tr>
@@ -73,6 +66,7 @@
 
                     <x-pagination :resultList="$userList"/>
 
+                    
                 </div>
             </div>
         </div>

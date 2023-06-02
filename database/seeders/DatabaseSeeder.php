@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserInformationSeeder::class,
             OptionGroupSeeder::class,
+            ModuleSeeder::class,
         ]);
     }
 }

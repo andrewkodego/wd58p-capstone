@@ -35,11 +35,12 @@
                         <table class="w-[100%]">
                             <thead>
                                 <tr>
-                                    <th class="th-header">ID</th>
-                                    <th class="th-header">Name</th>
-                                    <th class="th-header">Description</th>
-                                    <th class="th-header">Group Name</th>
-                                    <th class="th-header">Action</th>
+                                    <th class="th-header" style="width:5%">ID</th>
+                                    <th class="th-header" style="width:25%">Name</th>
+                                    <th class="th-header" style="width:20%">Description</th>
+                                    <th class="th-header" style="width:20%">Group Name</th>
+                                    <th class="th-header" style="width:15%">Created Date</th>
+                                    <th class="th-header" style="width:15%">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -48,21 +49,14 @@
                                     <td class="td-row text-right">{{ $option->id }}</td>
                                     <td class="td-row">{{ $option->name }}</td>
                                     <td class="td-row">{{ $option->description }}</td>
-                                    <td class="td-row">{{ $option->optionGroup->name }}</td>
+                                    <td class="td-row">{{ $option->optionGroup->deletedDate }}</td>
+                                    <td class="td-row">{{ $option->createdDate }}</td>
                                     <td class="td-row">
                                         <div class="flex items-center gap-4"> 
                                             <x-primary-button onclick="gotoEdit({{ $option->id}})">{{ __('Edit')}}</x-primary-button>
-                                            <form method="POST" action="{{ route('options.destroy',$option->id) }}">
-                                                @csrf
-                                                @method('delete')
-                                                <x-danger-button>{{ __('Delete')}}</x-danger-button>
-                                            </form>
-                                            @if($option->isDeleted)
-                                            <form method="POST" action="{{ route('options.restore',$option->id) }}">
-                                                @csrf
-                                                <x-danger-button>{{ __('Restore')}}</x-danger-button>
-                                            </form>
-                                            @endif
+
+                                            <x-delete-restore :id="$option->id" :isDeleted="$option->isDeleted"
+                                                :action="$option->isDeleted ? route('options.restore',$option->id) : route('options.destroy',$option->id)"/>
                                         </div>
                                     </td>
                                 </tr>

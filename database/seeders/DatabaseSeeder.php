@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             UserRoleSeeder::class,
             ModuleRightSeeder::class,
+            ArticleSeeder::class,
         ]);
     }
 }

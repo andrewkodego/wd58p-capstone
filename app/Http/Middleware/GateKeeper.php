@@ -8,9 +8,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 use App\Models\Module;
+use App\Traits\ModuleRights;
 
 class GateKeeper
 {
+    use ModuleRights;
+
     public function handle(Request $request, Closure $next): Response
     {
         $userProfile = Auth::user();
@@ -26,31 +29,10 @@ class GateKeeper
             $routeName = str_replace($action, "index", $routeName);
         }
 
-        $module = Module::where('route','=',$routeName)->first();
-        if($module){
-            $hasAccess = false;
-            switch($action){
-                case 'create':
-                    case 'store':
-                        $hasAccess = $module->userCanAdd;
-                        break;
-                case 'edit':
-                case 'update':
-                    $hasAccess = $module->userCanEdit;
-                    break;               
-                case 'destroy':
-                    $hasAccess = $module->userCanDelete;
-                    break;
-                default:
-                    $hasAccess = $module->userCanView;
-                    break;
-            }
+        $hasAccess = $this->checkModuleAccess($routeName, $action);
 
-            if(!$hasAccess){
-                abort(401);
-            }
-        }else{
-            abort(404);
+        if(!$hasAccess){
+            abort(401);
         }
 
         return $next($request); 

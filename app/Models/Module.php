@@ -68,6 +68,26 @@ class Module extends BaseModel
         return false;
     }
 
+    public function getUserCanEditAllAttribute(){
+        
+        $moduleRight = $this->userModuleRight;
+        if($moduleRight && $moduleRight->can_edit_all == 1){
+            return true;
+        }
+
+        return false;
+    }
+
+    public function getUserCanEditOwnOnlyAttribute(){
+        
+        $moduleRight = $this->userModuleRight;
+        if($moduleRight && $moduleRight->can_edit_own == 1){
+            return true;
+        }
+
+        return false;
+    }
+
     public function getUserCanAddAttribute(){
         
         $moduleRight = $this->userModuleRight;
@@ -82,6 +102,26 @@ class Module extends BaseModel
         
         $moduleRight = $this->userModuleRight;
         if($moduleRight && ($moduleRight->can_delete_all == 1 || $moduleRight->can_delete_own == 1)){
+            return true;
+        }
+
+        return false;
+    }
+
+    public function getUserCanDeleteAllAttribute(){
+        
+        $moduleRight = $this->userModuleRight;
+        if($moduleRight && $moduleRight->can_delete_all == 1){
+            return true;
+        }
+
+        return false;
+    }
+
+    public function getUserCanDeleteOwnOnlyAttribute(){
+        
+        $moduleRight = $this->userModuleRight;
+        if($moduleRight && $moduleRight->can_delete_own == 1){
             return true;
         }
 

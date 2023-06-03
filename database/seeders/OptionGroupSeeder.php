@@ -16,6 +16,7 @@ class OptionGroupSeeder extends Seeder
             ['name'=>'User Status'],
             ['name'=>'Employment Status'],
             ['name'=>'Payment Method'],
+            ['name'=>'Article Status'],
         ];
 
         foreach($defaultGroups as $group){
@@ -35,6 +36,10 @@ class OptionGroupSeeder extends Seeder
             ['name'=>'GCash','code'=>'PAY_GCASH','group_id'=>3],
             ['name'=>'Maya','code'=>'PAY_MAYA','group_id'=>3],
             ['name'=>'Paypal','code'=>'PAY_PAYPAL','group_id'=>3],
+
+            ['name'=>'Draft','code'=>'ARTSTAT_DRAFT','group_id'=>4,'sort_order'=>'a'],
+            ['name'=>'Published','code'=>'ARTSTAT_PUB','group_id'=>4,'sort_order'=>'b'],
+            ['name'=>'Archived','code'=>'ARTSTAT_ARC','group_id'=>4,'sort_order'=>'c'],
         ];
 
         foreach($defaultOptions as $option){

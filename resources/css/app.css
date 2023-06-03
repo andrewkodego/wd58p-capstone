@@ -25,4 +25,8 @@ td:first-child, th:first-child{
         @apply py-[10px] px-[15px] text-[16px] border-r-[1px] border-[#ccc];
     }
 
+    .disabled{
+        @apply bg-[#cccccc];
+    }
+
 }

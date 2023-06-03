@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserInformationController;
@@ -40,6 +41,7 @@ Route::middleware(['auth','gatekeeper'])->group(function () {
 
     Route::resource('/options', OptionController::class);
     Route::resource('/option-groups', OptionGroupController::class);
+    Route::resource('/articles', ArticleController::class);
 
     Route::get('/options-with-groups', [OptionController::class, 'getOptionWithGroups'])->name('options.with.groups');
 });

@@ -24,9 +24,10 @@ class ModuleSeeder extends Seeder
 
         $consoleMenus = [
             ['name'=>'Dashboard', 'route'=>'dashboard', 'parent_module_id'=>2],
-            ['name'=>'Manage Users', 'route'=>'users.index', 'parent_module_id'=>2],
-            ['name'=>'Manage Options', 'route'=>'options.index', 'parent_module_id'=>2],
-            ['name'=>'Manage Option Groups', 'route'=>'option-groups.index', 'parent_module_id'=>2],
+            ['name'=>'Users', 'route'=>'users.index', 'parent_module_id'=>2],
+            ['name'=>'Options', 'route'=>'options.index', 'parent_module_id'=>2],
+            ['name'=>'Option Groups', 'route'=>'option-groups.index', 'parent_module_id'=>2],
+            ['name'=>'Articles', 'route'=>'articles.index', 'parent_module_id'=>2],
         ];
 
         foreach($consoleMenus as $menu){

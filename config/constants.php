@@ -6,5 +6,6 @@ return [
 
     'DEFAULT_DATE_FORMAT'=>'F d, Y H:i',
 
+    'OG_ARTICLE_STAT'=>4,
     
 ];

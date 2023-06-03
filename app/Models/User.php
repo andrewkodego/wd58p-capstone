@@ -59,4 +59,50 @@ class User extends Authenticatable
             return false;
         }
     }
+
+    public function userRoles(){
+        return $this->hasMany('App\Models\UserRole','user_id')->orderby('role_id','asc');
+    }
+
+    protected $_userRoleList = null;
+    public function getTopUserRoleAttribute(){
+        if($this->_userRoleList == null){
+            $this->_userRoleList = $this->userRoles;
+        }
+
+        if(count($this->_userRoleList) > 0){
+            return $this->_userRoleList[0];
+        }
+        return null;
+    }
+
+    public function getIsSuperAdminAttribute(){
+        $topRole = $this->topUserRole;
+        if($topRole && $topRole->role_id == 1){
+            return true;
+        }
+        return false;
+    }
+
+    public function getIsAdminAttribute(){
+        $topRole = $this->topUserRole;
+        if($topRole && $topRole->role_id == 2){
+            return true;
+        }
+        return false;
+    }
+
+    public function getIsAccountUserAttribute(){
+        $topRole = $this->topUserRole;
+        if($topRole && $topRole->role_id == 3){
+            return true;
+        }
+        return false;
+    }
+
+    public function getMainMenuListAttribute(){
+        return Module::where('parent_module_id', 2)->orderby('sort_order','asc')->orderby('name','asc')->get();
+    }
+
+
 }

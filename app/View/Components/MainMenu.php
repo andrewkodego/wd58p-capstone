@@ -4,6 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Module;
 
 class MainMenu extends Component
@@ -22,7 +23,11 @@ class MainMenu extends Component
     }
 
     public function compose(View $view){
-        $consoleMenus = Module::where('parent_module_id', 2)->orderby('sort_order','asc')->orderby('name','asc')->get();
-        $view->with('consoleMenus', $consoleMenus);
+
+        if(Auth::user()){
+            $consoleMenus = Auth::user()->mainMenuList;
+            $view->with('consoleMenus', $consoleMenus);
+        }
+        
     }
 }

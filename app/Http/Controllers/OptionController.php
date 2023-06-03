@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Option;
 use App\Http\Requests\StoreOptionRequest;
 use App\Http\Requests\UpdateOptionRequest;
+use Illuminate\Http\Request;
 
 class OptionController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $resultList = Option::paginate(config('constants.RECORD_PER_PAGE'));
 
